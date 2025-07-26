@@ -1,0 +1,57 @@
+<div class="mainContainer">
+  <div class="navContainer">
+    <div class="navBar">
+      <a class="navBtn" href="/home">Overview</a>
+      <a class="navBtn" href="/portdetails">Port Details</a>
+      <a class="navBtn" href="/configInfo">Configuration Tab</a>
+    </div>
+    <div class="navRight">
+      <a class="loginBtn" href="/login">Logout</a>
+    </div>
+
+  </div>
+  <!-- Page Body: Sidebar + Main Content -->
+  <div class="pageBody">
+    <div class="devicePanel">
+      <h1>Devices</h1>
+      <div class="deviceContainer">
+        <ul>
+          <li *ngFor="let device of devices" (click)="selectDevice(device)" style="cursor: pointer;">
+            {{ device.deviceHostname }} ({{ device.deviceIp }})
+          </li>
+        </ul>
+      </div>
+
+      <div class="deviceActions">
+        <input type="text" [(ngModel)]="deviceIp" placeholder="Enter device IP" />
+        <button (click)="openAddDevice()">+ Add Device</button>
+        <button (click)="openRemoveDevice()">- Remove Device</button>
+      </div>
+
+    </div>
+    <div class="mainContent">
+      <h2>Configuration Info</h2>
+
+      <!-- Device Info Card -->
+      <div *ngIf="selectedDevice" class="deviceInfoCard">
+        <h2>Configuration Information</h2>
+        <button (click)="downloadConfigAsTxt()" class="downloadBtn">Download as .txt</button>
+        <div class="configSection">
+
+          <pre class="configBox">{{ configInfo }}</pre>
+
+
+        </div>
+
+
+
+      </div>
+
+      <!-- Display message when no device is selected -->
+      <div *ngIf="!selectedDevice" class="deviceInfoCard noDeviceSelected">
+        <p>No device selected. Please select a device from the sidebar.</p>
+      </div>
+    </div>
+  </div>
+</div>
+

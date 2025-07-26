@@ -1,0 +1,169 @@
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px; /* optional for spacing */
+  background-color: #f5f5f5; /* optional for visibility */
+}
+
+.navBar {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 30px;
+}
+
+.navBtn {
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.navRight {
+  font-size: 30px;
+}
+
+.loginBtn {
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+/* Layout body: sidebar + main content */
+.pageBody {
+  display: flex;
+  height: calc(100vh - 80px); /* adjust based on navbar height */
+}
+
+.devicePanel {
+  width: 18%;
+  padding: 10px;
+  text-align: center;
+  border-right: 1px solid #ccc;
+  background-color: #f5f5f5;
+  padding: 10px;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 90vh; /* full screen height */
+}
+
+.deviceContainer {
+  overflow: scroll;
+}
+
+.mainContent {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.devicePanel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1; /* so the list grows and pushes buttons to the bottom */
+  overflow-y: auto;
+  max-height: calc(100vh - 150px); /* Adjust depending on space taken by buttons/header */
+}
+
+.deviceActions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+  .deviceActions button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+.snackbar-success {
+  background-color: green;
+  color: white;
+}
+
+.snackbar-error {
+  background-color: red;
+  color: white;
+}
+
+
+
+
+.mainContent {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-left: 1px solid #ccc; /* Visual separation from device panel */
+  max-width: 100%; /* Ensures it doesn’t stretch too far */
+  height: 100%;
+}
+
+.deviceInfoCard {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+  .deviceInfoCard h2 {
+    font-size: 24px;
+    color: #333;
+  }
+
+  .deviceInfoCard div {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    gap: 20px; /* Adding a gap will keep some space between the label and value */
+  }
+
+    .deviceInfoCard div span {
+      font-weight: bold;
+      color: #555;
+      flex-basis: 30%; /* This ensures the label gets a little more space */
+    }
+
+    .deviceInfoCard div p {
+      font-size: 16px;
+      color: #333;
+      flex-grow: 1; /* Allows the paragraph to take up remaining space */
+    }
+
+  .deviceInfoCard .noDeviceSelected {
+    text-align: center;
+    color: #888;
+    font-size: 18px;
+    font-style: italic;
+  }
+
+  /* Optional: Add smooth transitions to enhance the user experience */
+  .deviceInfoCard div,
+  .deviceInfoCard h2 {
+    transition: all 0.3s ease;
+  }
+.portListSection {
+  margin-top: 20px;
+}
+
+.portTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+  .portTable th, .portTable td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+
+  .portTable th {
+    background-color: #f0f0f0;
+  }

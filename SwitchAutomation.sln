@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwitchAutomation.Server", "SwitchAutomation.Server\SwitchAutomation.Server.csproj", "{59609EE4-5950-4F65-A529-A6C66B6D5322}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "switchautomation.client", "switchautomation.client\switchautomation.client.esproj", "{7D484E69-2CEF-47F3-A408-2887A2606661}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F6B68861-848D-42DD-899C-387A9BA4E774}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59609EE4-5950-4F65-A529-A6C66B6D5322}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59609EE4-5950-4F65-A529-A6C66B6D5322}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59609EE4-5950-4F65-A529-A6C66B6D5322}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59609EE4-5950-4F65-A529-A6C66B6D5322}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D484E69-2CEF-47F3-A408-2887A2606661}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D484E69-2CEF-47F3-A408-2887A2606661}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D484E69-2CEF-47F3-A408-2887A2606661}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{7D484E69-2CEF-47F3-A408-2887A2606661}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D484E69-2CEF-47F3-A408-2887A2606661}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D484E69-2CEF-47F3-A408-2887A2606661}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

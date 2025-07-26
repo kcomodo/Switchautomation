@@ -1,0 +1,6 @@
+@SwitchAutomation.Server_HostAddress = http://localhost:5177
+
+GET {{SwitchAutomation.Server_HostAddress}}
+Accept: application/json
+
+###

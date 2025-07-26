@@ -1,0 +1,67 @@
+<div class="mainContainer">
+  <div class="navContainer">
+    <div class="navBar">
+      <a class="navBtn" routerLink="/home">Overview</a>
+      <a class="navBtn" routerLink="/portsdetails">Port Details</a>
+      <a class="navBtn" href="/configInfo">Configuration Tab</a>
+    </div>
+    <div class="navRight">
+      <a class="loginBtn" href="/login">Logout</a>
+    </div>
+  </div>
+
+  <!-- Page Body: Sidebar + Main Content -->
+  <div class="pageBody">
+    <div class="devicePanel">
+      <h1>Devices</h1>
+      <div class="deviceContainer">
+        <ul>
+          <li *ngFor="let device of devices" (click)="selectDevice(device)" style="cursor: pointer;">
+            {{ device.deviceHostname }} ({{ device.deviceIp }})
+          </li>
+        </ul>
+      </div>
+
+      <div class="deviceActions">
+        <input type="text" [(ngModel)]="deviceIp" placeholder="Enter device IP" />
+        <button (click)="openAddDevice()">+ Add Device</button>
+        <button (click)="openRemoveDevice()">- Remove Device</button>
+      </div>
+    </div>
+
+    <div class="mainContent">
+      <h2>Port Details Page</h2>
+
+      <div *ngIf="selectedDevice" class="deviceInfoCard">
+        <div class="portListSection">
+          <h4>Port Details</h4>
+          <table class="portTable">
+            <thead>
+              <tr>
+                <th>Port Name</th>
+                <th>Port State</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>VLAN</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let port of getPortList()">
+                <td>{{ port.number }}</td>
+                <td>{{ port.state }}</td>
+                <td>{{ port.description }}</td>
+                <td>{{ port.type }}</td>
+                <td>{{ port.vlan }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <div *ngIf="!selectedDevice" class="deviceInfoCard noDeviceSelected">
+        <p>No device selected. Please select a device from the sidebar.</p>
+      </div>
+    </div>
+  </div>
+</div>

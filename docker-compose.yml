@@ -1,0 +1,53 @@
+﻿services:
+  # MySQL Database
+  database:
+    image: mysql:8.0
+    container_name: switch-database
+    environment:
+      MYSQL_ROOT_PASSWORD: c9nbQ5yMX2E9WVW
+      MYSQL_DATABASE: automation
+    ports:
+      - "3307:3306"  # Use port 3307 externally, 3306 inside container
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql  # Optional: init script
+    networks:
+      - switchnet
+    restart: unless-stopped
+
+  server:
+    build:
+      context: ./SwitchAutomation.Server
+      dockerfile: Dockerfile
+    container_name: switch-backend
+    ports:
+      - "7105:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      # Update your connection string to point to the database container
+      - ConnectionStrings__DefaultConnection=Server=database;Database=automation;User=root;Password=c9nbQ5yMX2E9WVW;
+    networks:
+      - switchnet
+    depends_on:
+      - database
+
+  client:
+    build:
+      context: ./switchautomation.client
+      dockerfile: Dockerfile
+    container_name: switch-frontend
+    ports:
+      - "55848:80"
+      - "55849:443"
+    networks:
+      - switchnet
+    depends_on:
+      - server
+
+networks:
+  switchnet:
+    driver: bridge
+
+volumes:
+  mysql_data:  # Persists database data between container restarts

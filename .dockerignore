@@ -1,0 +1,32 @@
+# Node-related (for Angular app)
+node_modules
+dist
+tmp
+*.log
+
+# .NET build files (for backend)
+bin/
+obj/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git & Docker
+.git
+.gitignore
+.dockerignore
+
+# IDE/Editor files
+.vscode
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.idea/
+*.swp
+*.bak
+
+# Test output / coverage
+coverage
+TestResults

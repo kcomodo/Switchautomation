@@ -1,0 +1,141 @@
+<div class="mainContainer">
+  <div class="navContainer">
+    <div class="navBar">
+      <a class="navBtn" href="/home">Overview</a>
+      <a class="navBtn" href="/portdetails">Port Details</a>
+      <a class="navBtn" href="/configInfo">Configuration Tab</a>
+    </div>
+    <div class="navRight">
+      <a class="loginBtn" href="/login">Logout</a>
+    </div>
+
+  </div>
+  <!-- Page Body: Sidebar + Main Content -->
+  <div class="pageBody">
+    <div class="devicePanel">
+      <h1>Devices</h1>
+      <div class="deviceContainer">
+        <ul>
+          <li *ngFor="let device of devices" (click)="selectDevice(device)" style="cursor: pointer;">
+            {{ device.deviceHostname }} ({{ device.deviceIp }})
+          </li>
+        </ul>
+      </div>
+
+      <div class="deviceActions">
+        <input type="text" [(ngModel)]="deviceIp" placeholder="Enter device IP" />
+        <button (click)="openAddDevice()">+ Add Device</button>
+        <button (click)="openRemoveDevice()">- Remove Device</button>
+      </div>
+
+    </div>
+    <div class="mainContent">
+      <h2>Main Area (Device Details)</h2>
+      <!-- Animated Port Grid (Meraki-style) -->
+      <div *ngIf="portsTop.length > 0 && portsBottom.length > 0" class="animatedSwitch">
+        <h3>Switch Port Layout</h3>
+
+        <!-- 🔢 Port Labels Above -->
+        <!-- Top Number Labels (e.g., 1, 3, 5...) -->
+        <div class="portLabelRow">
+          <div *ngFor="let port of portsTop; let i = index" class="portLabel">
+            {{ i * 2 + 1 }} <!-- Shows 1, 3, 5, ... -->
+          </div>
+        </div>
+
+
+        <!-- Top Row -->
+        <div class="portRow">
+          <div *ngFor="let port of portsTop"
+               class="switchPort"
+               [ngClass]="getPortClass(port)"
+               [title]="port.description || port.number">
+            {{ getShortPort(port.number) }}
+          </div>
+        </div>
+
+        <!-- Bottom Row -->
+        <div class="portRow">
+          <div *ngFor="let port of portsBottom"
+               class="switchPort"
+               [ngClass]="getPortClass(port)"
+               [title]="port.description || port.number">
+            {{ getShortPort(port.number) }}
+          </div>
+        </div>
+
+        <!-- Bottom Number Labels (e.g., 2, 4, 6...) -->
+        <div class="portLabelRow">
+          <div *ngFor="let port of portsBottom; let i = index" class="portLabel">
+            {{ i * 2 + 2 }} <!-- Shows 2, 4, 6, ... -->
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+      <!-- Device Info Card -->
+      <div *ngIf="selectedDevice" class="deviceInfoCard">
+        <h2>Device Information</h2>
+        <div>
+          <span>IP Address:</span>
+          <p>{{ selectedDevice.deviceIp }}</p>
+        </div>
+        <div>
+          <span>Hostname:</span>
+          <p>{{ selectedDevice.deviceHostname }}</p>
+        </div>
+        <div>
+          <span>Model:</span>
+          <p>{{ selectedDevice.device_model }}</p>
+        </div>
+        <div>
+          <span>License Level:</span>
+          <p>{{ selectedDevice.device_license_level }}</p>
+        </div>
+        <div>
+          <span>Serial Number:</span>
+          <p>{{ selectedDevice.device_serialnum }}</p>
+        </div>
+        <div>
+          <span>OS Version:</span>
+          <p>{{ selectedDevice.osVersion }}</p>
+        </div>
+        <div><span>Number of ports:</span><p>{{ selectedDevice.amountPort }}</p></div>
+        <!-- Inventory Section -->
+        <div *ngIf="inventory.length > 0" class="inventorySection">
+
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>PID</th>
+                <th>VID</th>
+                <th>SN</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of inventory">
+                <td>{{ item.inventory_name }}</td>
+                <td>{{ item.inventory_description }}</td>
+                <td>{{ item.inventory_PID }}</td>
+                <td>{{ item.inventory_VID }}</td>
+                <td>{{ item.inventory_SN }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <!-- Display message when no device is selected -->
+      <div *ngIf="!selectedDevice" class="deviceInfoCard noDeviceSelected">
+        <p>No device selected. Please select a device from the sidebar.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
